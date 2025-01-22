@@ -1,0 +1,62 @@
+openapi: 3.1.0
+info:
+  title: Telecom API
+  description: Telecom Services to manage phone numbers
+  version: "1.0"
+servers:
+- url: http://localhost:8080
+  description: Generated server url
+paths:
+  /activate/{phoneNumber}:
+    post:
+      tags:
+      - telecom-controller
+      operationId: activateNumber
+      parameters:
+      - name: phoneNumber
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+  /phoneNumbers:
+    get:
+      tags:
+      - telecom-controller
+      operationId: getAllPhoneNumbers
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  type: string
+  /phoneNumbers/{customer}:
+    get:
+      tags:
+      - telecom-controller
+      operationId: getPhoneNumbersByCustomer
+      parameters:
+      - name: customer
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  type: string
+components: {}
